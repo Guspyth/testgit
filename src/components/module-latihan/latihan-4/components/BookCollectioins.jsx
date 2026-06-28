@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { styles, color_list } from "@/components/module-latihan/latihan-4/styles/styles";
@@ -21,6 +22,8 @@ export default function BookCollectioins({ books }) {
 }
 
 const BookList = ({ books }) => {
+  const router = useRouter();
+
   return (
     <View style={styles.book_grid}>
       {books.map((book, index) => (
@@ -28,6 +31,7 @@ const BookList = ({ books }) => {
           key={index}
           style={[styles.book_card, styles.shadow]}
           activeOpacity={0.7}
+          onPress={() => router.push(`/books/${book.id}`)}
         >
           <BookItemImg book={book} />
           <BookItemContent book={book} />

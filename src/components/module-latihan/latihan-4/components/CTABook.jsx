@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useRouter } from "expo-router";
 import { styles } from "@/components/module-latihan/latihan-4/styles/styles";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -17,7 +18,7 @@ const CTABook = ({ book }) => {
           }}
         >
           <CTAInfoBook book={book} />
-          <ButtonRead />
+          <ButtonRead book={book} />
         </View>
       </View>
     </View>
@@ -59,10 +60,16 @@ const CTAInfoBook = ({ book }) => {
   );
 };
 
-const ButtonRead = () => {
+const ButtonRead = ({ book }) => {
+  const router = useRouter();
+
+  const handleReadNow = () => {
+    router.push(`/books/${book.id}`);
+  };
+
   return (
-    <TouchableOpacity style={[styles.btn_read, styles.shadow]}>
-      <Text style={styles.btn_read_text}>Read Now</Text>
+    <TouchableOpacity style={[styles.btn_read, styles.shadow]} onPress={handleReadNow}>
+      <Text style={styles.btn_read_text}>Read More</Text>
     </TouchableOpacity>
   );
 };
